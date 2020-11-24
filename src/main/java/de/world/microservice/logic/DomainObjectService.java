@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -124,6 +125,7 @@ public class DomainObjectService {
             );
         }
 
+        domainObject.setUpdatedAt(LocalDateTime.now());
         // Refs aktualisieren
         domainObject.setValues(importantValues);
         return repository.save(domainObject);
