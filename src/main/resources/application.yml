@@ -1,0 +1,32 @@
+# Datasource
+# Cluster URL:
+spring:
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+    ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://ceres:31000/world?currentSchema=texter
+    username: worlduser
+    password: worlduser
+    platform: postgres
+
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: secret
+    template:
+      retry:
+        enabled: true
+        initial-interval: 2s
+
+---
+spring:
+  profiles: kubernetes
+  datasource:
+    url: jdbc:postgresql://gw.default.svc.cluster.local/world?currentSchema=texter
+
+  rabbitmq:
+    host: rabbitmq-nodeport.default.svc.cluster.local

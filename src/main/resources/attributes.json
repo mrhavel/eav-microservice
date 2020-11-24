@@ -1,0 +1,13 @@
+[
+    {
+      "name":"title",
+      "type": "string",
+      "handlerClass": "contentSubjectHandler",
+      "optional": "false"
+    },
+    {
+      "name": "description",
+      "type":"string",
+      "optional": "true"
+    }
+]
