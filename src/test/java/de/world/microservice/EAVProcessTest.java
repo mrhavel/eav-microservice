@@ -39,14 +39,15 @@ public class EAVProcessTest {
 
         Assertions.assertTrue(savedAttribute.getType().equals(attribute.getType()));
         try {
+            attribute = getTestAttribute();
             domainAttributeRepository.save(attribute);
             Assertions.assertTrue(false);
         } catch (Exception exp) {
-            // Expected
+            domainAttributeRepository.delete(savedAttribute);
+      //      Assertions.assertTrue(domainAttributeRepository.count() == 0);
         }
 
-        domainAttributeRepository.delete(savedAttribute);
-        Assertions.assertTrue(domainAttributeRepository.count() == 0);
+
     }
 
 }
