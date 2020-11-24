@@ -41,6 +41,7 @@ public class MicroserviceApplication {
 	public void initialize() throws URISyntaxException, IOException {
 		if (attributeRepository.count() == 0) {
 			log.info("Creating Attribute Contents for Domain Object");
+			// @TODO Funktioniert nicht, wenn die DomänenAttribut Definition in der Jar liegt
 			File fil = new File(this.getClass().getClassLoader().getResource("attributes.json").toURI());
 			if (!fil.exists()) {
 				log.error("File not found: attributes.json");
@@ -90,8 +91,11 @@ public class MicroserviceApplication {
 
 		if (clazz.isAnnotationPresent(EnableRabbitCommunications.class)) {
 
+			// Der Microservice ist mit der o.g. Annotation ein Service, der mit einer
+			// MessageQueue arbeiten soll (nicht darf).
+
 			log.info("***********************************************");
-			log.info("* MessageQueue Annotation loaded.");
+			log.info("* MessageQueue Annotation loaded. Checking");
 			log.info("***********************************************");
 
 			// Checking, if Producer and/or Consumer exists
@@ -104,7 +108,7 @@ public class MicroserviceApplication {
 			if (consumers.isEmpty() && producers.isEmpty()) {
 				log.error("Neither a consumer nor producer is defined.");
 				log.error("You should add a producer, a consumer or remove the Annotation");
-				System.exit(-1);
+				System.exit(-1); // Die Konfiguration des Microservices ist widersprüchlich. Wir stoppen hard
 			}
 
 		}

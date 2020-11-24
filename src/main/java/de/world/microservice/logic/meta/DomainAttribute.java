@@ -24,7 +24,7 @@ public class DomainAttribute {
     @Column(nullable = false)
     private String type;
 
-    // Pre und Post Processing der Values
+    // Pre und Post Processing der Values über die Handler im entsprechenden Package
     private String handlerClass;
 
     @Lob

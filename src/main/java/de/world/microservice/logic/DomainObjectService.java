@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * Soll die Schnittstelle zwischen dem Controller und dem EAV System sein
  * <p>
- * Nix mit Attributen hier!
+ * Wir lösen hier die Anforderungen des Zusammenbaus, der Persistenz
  */
 @Service
 @Scope("prototype") // do get it thread safe
@@ -50,11 +50,12 @@ public class DomainObjectService {
         if (!object.isPresent())
             return null;
 
-        DomainObject object1 = object.get();
-        for (DomainValue val : object1.getValues()) {
-            if (val.getAttribute().getHandlerClass() != null) {
-                Handler handler = (Handler) context.getBean(val.getAttribute().getHandlerClass());
-                val.setValue((String) handler.postProcessor(val.getValue()));
+        if (runProcessors) {
+            for (DomainValue val : object.get().getValues()) {
+                if (val.getAttribute().getHandlerClass() != null) {
+                    Handler handler = (Handler) context.getBean(val.getAttribute().getHandlerClass());
+                    val.setValue((String) handler.postProcessor(val.getValue()));
+                }
             }
         }
 
@@ -79,9 +80,15 @@ public class DomainObjectService {
     }
 
 
+    /**
+     * @TODO Das Löschen sollte nicht unkontrolliert erfolgen. Irgendwas Analog Hibernate Envers
+     * Man könnte den Microservice auch spiegeln, als eine Art Papierkorb und dort final Skripte
+     * verwenden
+     *
+     * @param obj - zu löschendes Domänenobjekt
+     */
     public void deleteObject(DomainObject obj) {
         repository.delete(obj);
-
     }
 
     /**
@@ -96,7 +103,7 @@ public class DomainObjectService {
         List<DomainValue> importantValues = new ArrayList<>();
 
         if (domainObject.getId() == null || domainObject.getId() == 0) {
-            // Kleiner Tausch um eine Instanz vom DomainObject zu bekommen
+            // Kleiner Tausch um eine Entität vom DomainObject aus der Datenbank zu bekommen
             List<DomainValue> tmpList = new LinkedList<>(domainObject.getValues());
             domainObject.getValues().clear();
             domainObject = repository.save(domainObject);
@@ -117,6 +124,7 @@ public class DomainObjectService {
             );
         }
 
+        // Refs aktualisieren
         domainObject.setValues(importantValues);
         return repository.save(domainObject);
     }
