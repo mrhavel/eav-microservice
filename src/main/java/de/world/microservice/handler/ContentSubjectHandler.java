@@ -3,7 +3,7 @@ package de.world.microservice.handler;
 import org.springframework.stereotype.Service;
 
 /**
- * Nur ein Beispiel. Ich hab gerade nix im SInn, ob es nützlich ist.
+ * Dies hier ist nur ein fast nutzloses Beispiel
  */
 @Service
 public class ContentSubjectHandler implements Handler<String, String> {

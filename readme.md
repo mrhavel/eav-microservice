@@ -1,9 +1,7 @@
 # Generischer Microservice
 
-Namespace: World
+Das Domänenobjekt besteht aus drei Entitäten. 
 
-Nimmt Texte auf und speichert sie. Damit ist seine Funktion
-schon erklärt
 
 # Forschung und Entwicklung
 Dieses Projekt ist Hauptprojekt für die Entwicklung genrischer 

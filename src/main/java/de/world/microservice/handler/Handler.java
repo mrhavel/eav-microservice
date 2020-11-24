@@ -2,7 +2,9 @@ package de.world.microservice.handler;
 
 /**
  * Gibt die Möglichkeit Daten vor Speicherung zu verändern
- * oder nach dem Laden zu ergänzen
+ * oder nach dem Laden zu ergänzen.
+ *
+ * Motivation waren Passwörter.
  */
 public interface Handler<IN, OUT> {
 
