@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Klammer für die Daten
+ */
 @Data
 @Entity
 public class DomainObject {

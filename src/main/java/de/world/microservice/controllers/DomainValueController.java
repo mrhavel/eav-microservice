@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+/**
+ * Dieser Microservice ist ein reiner Datenlieferant.
+ *
+ */
 @RestController
 @RequestMapping("/val")
 public class DomainValueController {
@@ -44,6 +48,7 @@ public class DomainValueController {
      * @param value
      * @return
      */
+    @PostMapping("/{id}")
     @PutMapping("/{id}")
     public ResponseEntity put(@PathVariable("id") Long domainObjectId,
                               @RequestBody DomainValue value) {

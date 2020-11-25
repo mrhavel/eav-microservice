@@ -143,7 +143,7 @@ public class MicroserviceApplication {
         if (consumers.isEmpty() && producers.isEmpty()) {
             log.error("Neither a consumer nor producer is defined.");
             log.error("You should add a producer, a consumer or remove the Annotation");
-            System.exit(-1); // Die Konfiguration des Microservices ist widersprüchlich. Wir stoppen hard
+            System.exit(-1); // Die Konfiguration des Microservices ist widersprüchlich. Wir stoppen hart
         }
     }
 }

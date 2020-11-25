@@ -136,9 +136,9 @@ public class DomainObjectService {
      * Die eigentliche Speichermethode für Werte zu einem
      * Domänenobjekt
      *
-     * @param obj
-     * @param attribute
-     * @param value
+     * @param obj           - Meta Domänen Object
+     * @param attribute     - Kontext
+     * @param value         - Wert
      * @return
      */
     public DomainValue addValueToObject(
@@ -149,6 +149,7 @@ public class DomainObjectService {
         DomainValue domainValue = new DomainValue();
         domainValue.setValue(value);
         domainValue.setAttribute(attribute);
+
         if (obj.getId() != null && obj.getId() > 0) {
             domainValue.setParent(obj);
         }
@@ -156,6 +157,7 @@ public class DomainObjectService {
             Handler handler = (Handler) context.getBean(domainValue.getAttribute().getHandlerClass());
             domainValue.setValue((String) handler.preProcessor(domainValue.getValue()));
         }
+
         domainValue = valueRepository.save(domainValue);
         return domainValue;
     }
