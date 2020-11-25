@@ -126,13 +126,15 @@ public class DomainObjectService {
         }
 
         domainObject.setUpdatedAt(LocalDateTime.now());
+
         // Refs aktualisieren
         domainObject.setValues(importantValues);
         return repository.save(domainObject);
     }
 
     /**
-     * Die eigentliche Speichermethode
+     * Die eigentliche Speichermethode für Werte zu einem
+     * Domänenobjekt
      *
      * @param obj
      * @param attribute

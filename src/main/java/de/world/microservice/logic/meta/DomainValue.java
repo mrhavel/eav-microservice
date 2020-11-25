@@ -1,6 +1,7 @@
 package de.world.microservice.logic.meta;
 
 import lombok.Data;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -18,6 +19,10 @@ public class DomainValue {
     @OneToOne
     private DomainAttribute attribute;
 
+    @JsonIgnore         // Keine Kreisreferenzen im Parsing
     @OneToOne
     private DomainObject parent;
+
+    // Bitte nicht mehr eintragen. Wir speichern hier nur die Werte ein
+    // und geben den Werten mit Referenzen einen Kontext
 }
