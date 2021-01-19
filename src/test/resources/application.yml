@@ -1,0 +1,19 @@
+# Datasource
+# Cluster URL:
+spring:
+  profiles: test
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+    ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://ceres:31000/world?currentSchema=testSchema
+    username: worlduser
+    password: worlduser
+    platform: postgres
+
+---
+spring:
+  profiles: jenkins
+  datasource:
+    url: jdbc:postgresql://gw.default.svc.cluster.local/world?currentSchema=testSchema

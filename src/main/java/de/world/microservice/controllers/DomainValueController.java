@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 /**
+ *
  * Dieser Microservice ist ein reiner Datenlieferant.
  *
  */

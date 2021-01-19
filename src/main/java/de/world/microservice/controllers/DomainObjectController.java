@@ -4,6 +4,7 @@ import de.world.microservice.logic.meta.DomainObject;
 import de.world.microservice.logic.meta.DomainObjectRepository;
 import de.world.microservice.logic.meta.DomainValueRepository;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.Optional;
 /**
  *
  */
+@Slf4j
 @RestController
 @RequestMapping("/obj")
 public class DomainObjectController {
