@@ -19,8 +19,8 @@ public class DomainValue {
     @OneToOne
     private DomainAttribute attribute;
 
-    @JsonIgnore         // Keine Kreisreferenzen im Parsing
     @OneToOne
+    @JsonIgnore         // Keine Kreisreferenzen im Parsing
     private DomainObject parent;
 
     // Bitte nicht mehr eintragen. Wir speichern hier nur die Werte ein

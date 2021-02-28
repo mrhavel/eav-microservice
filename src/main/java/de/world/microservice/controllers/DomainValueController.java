@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 /**
- *
- * Dieser Microservice ist ein reiner Datenlieferant.
- *
+ * -----------------------------------------------------
+ * | Dieser Microservice ist ein reiner Datenlieferant.|
+ * -----------------------------------------------------
  */
 @RestController
 @RequestMapping("/val")
@@ -38,7 +38,6 @@ public class DomainValueController {
         Optional<DomainObject> obj = objectRepository.findById(domainObjectId);
         if (obj.isPresent())
             return new ResponseEntity(obj.get().getValues(), HttpStatus.OK);
-
 
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }

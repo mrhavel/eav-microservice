@@ -39,7 +39,6 @@ public class DomainObjectController {
          * @TODO Es fehlt hier noch eine Sortierungsmöglichkeitn
          * => Pageable und Sortable mal nutzen
          */
-
         if (context.isPresent()) {
             return new ResponseEntity(objectRepository.findIdsByContext(context.get()), HttpStatus.OK);
         }
@@ -63,9 +62,9 @@ public class DomainObjectController {
 
 
     @PostMapping
-    @ApiResponse(description = "Erstellt ein Objekt.")
-    public ResponseEntity create(@RequestBody DomainObject value) {
-        DomainObject object = objectRepository.save(value);
+    @ApiResponse(description = "Erstellt ein Objekt des Types, für den der Microservice zuständig ist")
+    public ResponseEntity createObject(@RequestBody DomainObject domainObject) {
+        DomainObject object = objectRepository.save(domainObject);
         return new ResponseEntity(object.getId(), HttpStatus.CREATED);
     }
 

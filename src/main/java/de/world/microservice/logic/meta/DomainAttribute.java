@@ -7,7 +7,10 @@ import java.time.LocalDateTime;
 
 /**
  * Meta Informationen für jedes Value, was damit
- * dann auch Kontextbehaftet sein sollte
+ * dann auch Kontextbehaftet sein soll.
+ *
+ * Das System selbst wird keine Kontextwechsel unterstützen, weil
+ * wir
  */
 @Entity
 @Data
